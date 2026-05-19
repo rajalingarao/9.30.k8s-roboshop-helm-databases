@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: debug
+  namespace: roboshop
+spec:
+  selector:
+    app: debug
+    project: roboshop
+    tier: qa
+  ports:
+  - protocol: TCP
+    port: 81 #service-port
+    targetPort: 81 #container-port

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: debug
+    project: roboshop
+    tier: qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels are used to find the pods
+      app: debug
+      project: roboshop
+      tier: qa
+  template:
+    metadata:
+      labels: # these labels are pod labels
+        app: debug
+        project: roboshop
+        tier: qa
+    spec:
+      containers:
+      - name: debug
+        # image: debug:v1.1
+        image: lingadevops/debug:v1.5
+        imagePullPolicy: Always
+        #here with this line port will not be opened, just for information
+        command: ["sleep", "100000"]
